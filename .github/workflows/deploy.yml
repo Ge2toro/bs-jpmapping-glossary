@@ -1,0 +1,37 @@
+name: Deploy MkDocs
+
+# mainブランチに変更がプッシュされたら自動で動く設定
+on:
+  push:
+    branches:
+      - main
+      - master
+
+# GitHubに書き込み権限を与える
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        # Pythonを動かすためのPandasや、MkDocs本体をインストール
+        run: |
+          pip install mkdocs-material pandas openpyxl
+
+      - name: Run dictionary script
+        # ここでtoroさんの最強スクリプトを自動実行！
+        run: python make_dictionary.py
+
+      - name: Deploy to GitHub Pages
+        # 出来上がったサイトを公開用ブランチ（gh-pages）に自動アップロード
+        run: mkdocs gh-deploy --force
