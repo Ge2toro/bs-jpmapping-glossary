@@ -1,4 +1,6 @@
 site_name: Beat Saber マッピング用語集
+repo_url: https://github.com/Ge2toro/bs-jpmapping-glossary
+repo_name: GitHub
 theme:
   name: material
   language: ja
@@ -14,9 +16,9 @@ theme:
         icon: material/brightness-3
         name: ライトモードに切り替える
 markdown_extensions:
-  - admonition               # 通常の囲み枠 (!!!) を使えるようにする
-  - pymdownx.details         # 折りたたみ (???) を使えるようにする
-  - pymdownx.superfences     # 枠の中にさらに表やコードを書けるようにする
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 plugins:
   - search
   - glightbox

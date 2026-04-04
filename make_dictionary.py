@@ -166,7 +166,7 @@ def generate_markdown():
         meaning = re.sub(url_pattern, r'<a href="\1" target="_blank">\1</a>', meaning)
 
         # ---------------------------------------------------------
-        # 2. ★新仕様：「URL追加」カラムを使って【 】をリンク化する
+        # 2. 「URL追加」カラムを使って【 】をリンク化する
         # ---------------------------------------------------------
         # セル内の改行ごとに分割し、httpから始まるURLだけのリストを作る
         urls = [u.strip() for u in add_url.splitlines() if u.strip().startswith('http')]
