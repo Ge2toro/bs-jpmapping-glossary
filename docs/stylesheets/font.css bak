@@ -1,0 +1,6 @@
+/*
+:root {
+    /* 読み込んだフォントを指定の順番で割り当てる（最後のsans-serifは念のための保険） */
+    --md-text-font: "Noto Sans JP", Roboto !important;
+/*}
+

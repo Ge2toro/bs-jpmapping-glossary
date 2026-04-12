@@ -160,16 +160,24 @@ def generate_markdown():
         meaning = meaning.replace('\n', '<br>')
 
         # ---------------------------------------------------------
-        # 1. ベタ書きURLの自動リンク化（手動タグの中身はスルー）
+        # 1. ベタ書きURLの自動リンク化（ダミー文字で保護）
         # ---------------------------------------------------------
+        raw_url_replacements = {}
+        def replace_raw_url(m):
+            url = m.group(1)
+            placeholder = f"__RAW_URL_{len(raw_url_replacements)}__"
+            raw_url_replacements[placeholder] = f'<a href="{url}" target="_blank">{url}</a>'
+            return placeholder
+
         url_pattern = r'(?<![\("])(https?://[^\s<"\'\)]+)'
-        meaning = re.sub(url_pattern, r'<a href="\1" target="_blank">\1</a>', meaning)
+        meaning = re.sub(url_pattern, replace_raw_url, meaning)
 
         # ---------------------------------------------------------
-        # 2. 「URL追加」カラムを使って【 】をリンク化する
+        # 2. 「URL追加」カラムを使って【 】をリンク化する（ダミー文字で保護）
         # ---------------------------------------------------------
         # セル内の改行ごとに分割し、httpから始まるURLだけのリストを作る
         urls = [u.strip() for u in add_url.splitlines() if u.strip().startswith('http')]
+        bracket_replacements = {}
         
         if urls:
             url_index = 0
@@ -181,12 +189,50 @@ def generate_markdown():
                 if url_index < len(urls):
                     current_url = urls[url_index]
                     url_index += 1
-                    return f'<a href="{current_url}" target="_blank">{m.group(1)}</a>'
+                    placeholder = f"__BRACKET_LINK_{len(bracket_replacements)}__"
+                    bracket_replacements[placeholder] = f'<a href="{current_url}" target="_blank">{m.group(1)}</a>'
+                    return placeholder
                 # URLが足りなくなった場合は、そのままの文字（【】付き）で残す
-                return m.group(0) 
+                return m.group(0)
 
             # 説明文の中にあるすべての【文字】を順番に処理
             meaning = re.sub(r'【(.*?)】', replace_bracket, meaning)
+
+        # ---------------------------------------------------------
+        # 2.5. 手動ジャンプリンク [[用語]] または [[用語|表示テキスト]] の処理
+        # ---------------------------------------------------------
+        manual_replacements = {}
+        def replace_manual_link(m):
+            content = m.group(1)
+            
+            # 「|」が含まれているかチェック（エイリアス指定があるか）
+            if '|' in content:
+                parts = content.split('|', 1)
+                target_term = parts[0].strip()  # 飛ばしたい先の用語ID
+                display_text = parts[1].strip() # 画面に表示したい文字
+            else:
+                target_term = content.strip()
+                display_text = content.strip()
+                
+            placeholder = f"__MANUAL_LINK_{len(manual_replacements)}__"
+            manual_replacements[placeholder] = f'<a href="#{target_term}">{display_text}</a>'
+            return placeholder
+
+        meaning = re.sub(r'\[\[(.*?)\]\]', replace_manual_link, meaning)
+
+        # ---------------------------------------------------------
+        # 2.6. エスケープ処理（自動リンクの回避） !!用語!!
+        # ---------------------------------------------------------
+        # 例: !!アーク!! と書くと、自動リンクされずにただの「アーク」として出力される
+        escape_replacements = {}
+        def replace_escape(m):
+            content = m.group(1)
+            placeholder = f"__ESCAPE_{len(escape_replacements)}__"
+            # リンクタグではなく、ただの「テキスト」として保管しておく
+            escape_replacements[placeholder] = content 
+            return placeholder
+
+        meaning = re.sub(r'!!(.*?)!!', replace_escape, meaning)
 
         # ---------------------------------------------------------
         # 3. 用語の自動相互リンク
@@ -203,7 +249,24 @@ def generate_markdown():
                     meaning = new_meaning
                     replacements[placeholder] = f'<a href="#{target}">{target}</a>'
 
+        # 自動リンクのプレースホルダーを戻す
         for placeholder, link_html in replacements.items():
+            meaning = meaning.replace(placeholder, link_html)
+
+        # 手動リンクのプレースホルダーを戻す
+        for placeholder, link_html in manual_replacements.items():
+            meaning = meaning.replace(placeholder, link_html)
+
+        # エスケープのプレースホルダーをただのテキストに戻す
+        for placeholder, text in escape_replacements.items():
+            meaning = meaning.replace(placeholder, text)
+
+        # ベタ書きURLのプレースホルダーを戻す
+        for placeholder, link_html in raw_url_replacements.items():
+            meaning = meaning.replace(placeholder, link_html)
+
+        # 【 】のプレースホルダーを戻す
+        for placeholder, link_html in bracket_replacements.items():
             meaning = meaning.replace(placeholder, link_html)
 
         group = get_group(yomi_sort)

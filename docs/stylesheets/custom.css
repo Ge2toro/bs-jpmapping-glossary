@@ -1,0 +1,16 @@
+/* --- 外部リンクを区別するデザイン --- */
+
+/* httpから始まるリンクの末尾に「↗」を付ける */
+.md-typeset a[href^="http"]::after {
+    content: " ↗"; /* アイコン（矢印） */
+    font-size: 0.6em; /* 少し小さく */
+    opacity: 1.0; /* 少し薄くして主張を抑える */
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+/* ただし、自分のサイト（ge2toro.github.io）への絶対パスリンクには付けない（除外ルール） */
+.md-typeset a[href^="http"][href*="ge2toro.github.io"]::after {
+    content: none;
+}
