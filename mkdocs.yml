@@ -1,9 +1,8 @@
 site_name: Beat Saber マッピング用語集
-repo_url: https://github.com/Ge2toro/bs-jpmapping-glossary
-repo_name: GitHub
 theme:
   name: material
   language: ja
+  custom_dir: overrides
   font:
     text: 
   palette:
@@ -17,6 +16,9 @@ theme:
       toggle:
         icon: material/brightness-3
         name: ライトモードに切り替える
+nav:
+  - マッピング用語集: index.md
+  - リンク集: links.md
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -29,6 +31,12 @@ extra:
     - icon: fontawesome/brands/x-twitter
       link: https://x.com/ge2toro
       name: toro on X
+    - icon: custom/note
+      link: https://note.com/toro_desu
+      name: toro on note
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/gfKQkgcpmE
+      name: Discord (mapping group)
     - icon: fontawesome/brands/github
       link: https://github.com/Ge2toro/bs-jpmapping-glossary
       name: GitHubリポジトリ
