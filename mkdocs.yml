@@ -1,4 +1,6 @@
 site_name: Beat Saber マッピング用語集
+site_description: Beat Saber（ビートセイバー）のマッピングに特化した用語集。配置用語なども含みます。
+site_url: https://ge2toro.github.io/bs-jpmapping-glossary/
 theme:
   name: material
   language: ja

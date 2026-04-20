@@ -1,3 +1,8 @@
+---
+title: Beat Saber マッピング用語集
+description: Beat Saber（ビートセイバー）のマッピングに特化した用語集。配置用語なども含みます。
+---
+
 # Beat Saber マッピング用語集 (WIP)
 
 日本人向けの、Beat Saberのマッピング（譜面制作）に特化した用語集です。<br>
