@@ -3,12 +3,12 @@ title: Beat Saber マッピング用語集
 description: Beat Saber（ビートセイバー）のマッピングに特化した用語集。配置用語なども含みます。
 ---
 
-# Beat Saber マッピング用語集 (WIP)
+# Beat Saber マッピング用語集
 
 日本人向けの、Beat Saberのマッピング（譜面制作）に特化した用語集です。<br>
 配置用語なども含みますので、マッピングをしていないプレイヤーも参考になると思います。<br>
 !!! info ""
-    これは、私toroが個人的に作成した用語集です。内容について何かあればページ下部の連絡先からお気軽にご連絡ください。<br>
+    これは、私toroが個人的に作成した用語集です。<br>「この用語がない」「説明がおかしい」等、内容について何かあればページ下部の連絡先からお気軽にご連絡ください。<br>
     プレイヤー目線での一般的なBeat Saber用語が知りたい方は、hibitさんが作成している「<a href="https://docs.google.com/document/d/1Zl8jh0djB80o3tbTmGR1MF9gV9pkYPfxqTC4IuRQmd0/edit?usp=sharing" target="_blank">ビーセイゆるふわ用語集</a>」もおすすめです。
 
 
@@ -60,6 +60,7 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 | <span id='壁'></span>**壁**<br><small>*Wall*</small> | 壁の障害物。頭が当たるとダメージを受けコンボが途切れる。プレイヤーは身体を動かして避ける必要がある。頭以外に判定は無く、セイバーが触れても問題ない。<br>マッピングにおいては、避けさせる目的で配置するほか、外レーンや<a href="#V3ウォール">V3ウォール</a>などで音を<a href="#表現">表現</a>するだけの飾りの壁としても用いられる。 |
 | <span id='壁よけ'></span>**壁よけ**<br><small>*Dodge Wall*</small> | ＝<a href="#ドッジウォール">ドッジウォール</a><br>または、壁を避ける行為そのもの。 |
 | <span id='可変BPM'></span>**可変BPM**<br><small>*Variable BPM*</small> | 1曲の中でBPMが変化すること。マッピングするには都度BPM<a href="#イベント">イベント</a>を置いて調整することになる。 |
+| <span id='Kizuスライダー'></span>**Kizuスライダー**<br><small>*Kizu slider*</small> | 途中で切り返す<a href="#スライダー">スライダー</a>配置。<br>直線的に切り返すものもあれば、円を描きながら途中で切り返すようなものもある。切り返しの為に、通常のスライダーよりも遅い<a href="#スロースライダー">スロースライダー</a>で配置されることが多い。<br>マッパーのkizuflux氏が多用していたことでそう呼ばれるようになったと思われる。<br>※画像は一例で、始まりと終わりを矢印ノーツにしたり、2回切り返すなどバリエーションは様々<br><img src="images/kizu.jpg" width="150"> |
 | <span id='ギミック'></span>**ギミック**<br><small>*Gimmick*</small> | 標準的なセオリー（定番パターンや、時には<a href="#パリティ">パリティ</a>など）からあえて外れて、プレイヤーに特定の「特殊な動き」や「攻略要素」を要求する変則的な配置や仕掛け。特定のギミックをコンセプトとしてデザインされた譜面はギミック譜面とも呼ばれる。<br>※かなりふんわりしたニュアンスの用語である為、「斬新なアイデアの配置・譜面」ぐらいのイメージでよい |
 | <span id='Characteristic'></span>**Characteristic**<br><small>*キャラクタリスティック*</small> | Standardや<a href="#OneSaber">OneSaber</a>など、譜面の<a href="#ゲームモード">ゲームモード</a>（難易度の大分類）のこと。<br>・公式のCharacteristic: <br>Standard、OneSaber、<a href="#No Arrows">No Arrows</a>、<a href="#360度譜面">360 Degree</a>、<a href="#90度譜面">90 Degree</a>、<a href="#Legacy">Legacy</a><br>・非公式のCharacteristic（<a href="#SongCore">SongCore</a>によって機能）: <br><a href="#Lightshow">Lightshow</a>、<a href="#Lawless">Lawless</a><br>Characteristic名称とラベルアイコンは自由に変更できる（SongCoreの機能）。 |
 | <span id='ギャロップ'></span>**ギャロップ**<br><small>*Gallop*</small> | 赤→青、または青→赤の直後に同時切りを置く一連のパターン。特に、1/4間隔などの速い速度で配置されたものを指す（<a href="#ストリーム">ストリーム</a>の最後を同時切りにしたものも該当）。<br>見た目以上の難度、<a href="#強調">強調</a>を生む配置であるため扱いには注意が必要である。<br><img src="images/gallop.jpg" width="150"> |
@@ -95,12 +96,14 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 | <span id='出張'></span>**出張**<br><small>*Crossover※*</small> | 右手用のノーツを左側に配置するなど、反対側の手で切らせる配置。音ゲー用語。<br>※海外ではクロス配置だけでなく出張もCrossoverと呼ばれる |
 | <span id='シュラドアングル'></span>**シュラドアングル**<br><small>*Shrado Angle*</small> | 斜め内向きの切り下げの後、レーンを跨いで真上切り上げが続くパターン。<br>この形ではきちんとした<a href="#誘導">誘導</a>や<a href="#セットアップ">セットアップ</a>がない限り、プレイヤーは真上ノーツを斜めに切り上げてしまいやすく、<a href="#バッドカット">バッドカット</a>の危険性があるパターンである。<br>このパターンを<a href="#ランク譜面">ランク譜面</a>で使用したマッパー名（shrado）に由来する。<br><img src="images/shrado.jpg" width="150"> |
 | <span id='シングル'></span>**シングル**<br><small>*Single*</small> | ノーツが1個のみの配置。方向は問わない。単ノーツ、単発ノーツ。<br>関連: <a href="#ダブル">ダブル</a> |
+| <span id='スイッチバック'></span>**スイッチバック**<br><small>*Switch-back*</small> | 曲線の頂点で切り返す<a href="#プードル">プードル</a>配置。<br>切り返しの為に、頂点周辺は必ずドットノーツで配置される。角度点を失わせない為にアークが追加される場合も。<br><img src="images/switchback.jpg" width="150"> |
 | <span id='ScoreSaber'></span>**ScoreSaber**<br><small>*スコアセイバー*</small> | 世界中のプレイヤーとスコアを競い合うことができる、最も歴史のある非公式リーダーボードMod。およびそのランクシステムを指す。対象となる<a href="#ランク譜面">ランク譜面</a>をクリアすることで<a href="#PP">PP</a>というランクポイントを得られる。<br>略してSSと書かれることも。<br>関連: <a href="#BeatLeader">BeatLeader</a> |
 | <span id='スタック（動詞）'></span>**スタック（動詞）**<br><small>*Stacked*</small> | ノーツを同じ場所に完全に重なって配置してしまうこと。大抵はコピペミスによって起こる<a href="#ミスマップ">ミスマップ</a>であり、エディター上では判別しにくい為<a href="#テストプレイ">テストプレイ</a>や<a href="#マップチェッカー">マップチェッカー</a>での確認が大事である。 |
 | <span id='スタック'></span>**スタック**<br><small>*Stack Note*</small> | 同じタイミングで、一直線に2個積み重なったノーツ。シングルノーツよりも強く大きいスイングが求められる。<br><img src="images/stack.jpg" width="150"> |
 | <span id='ステアケース（階段）'></span>**ステアケース（階段）**<br><small>*Staircase*</small> | ノーツのスイング軌道上に被る形で、手前または後続に他の色のノーツが配置されているパターン。<br>ノーツ同士の間隔やBPMによっては、スイング前の軌道またはスイング後の軌道が別の色のノーツと被ってしまい、<a href="#巻き込み">巻き込み</a>（<a href="#バッドカット">バッドカット</a>）の危険性が上がってしまう。<br>本来の名称は<a href="#ヒットボックス">ヒットボックス</a>・ステアケース（Hitbox Staircase）。<br><img src="images/stair.jpg" width="150"> |
 | <span id='ストリーム'></span>**ストリーム**<br><small>*Stream*</small> | 左右の色のノーツが交互に、短い間隔で連続して流れてくる一連の配置。長く続く場合、リズムキープとスタミナが求められる。<br>関連: <a href="#バースト">バースト</a><br><img src="images/stream.jpg" width="150"> |
 | <span id='ストロボ'></span>**ストロボ**<br><small>*Strobe*</small> | ライトを高速で点滅させる激しい演出。 |
+| <span id='スパイラル'></span>**スパイラル**<br><small>*Spiral*</small> | 「螺旋状」を意味する。譜面においては螺旋状に配置された一連のパターンを指す。<br>螺旋状に配置され腕をぐるぐる回す<a href="#スライダー">スライダー</a>や<a href="#プードル">プードル</a>、螺旋状に配置された<a href="#バイブロ">バイブロ</a>や<a href="#ストリーム">ストリーム</a>などなど。それぞれを指してスパイラル◯◯とも呼ばれる。<br>関連: <a href="#ボムスパイラル">ボムスパイラル</a><br><img src="images/spiral.jpg" width="150"> |
 | <span id='スピード'></span>**スピード**<br><small>*Speed*</small> | セイバーを素早く正確に振り続けることに特化した譜面。<a href="#eBPM">eBPM</a>が高速であり、<a href="#ジャンプ">ジャンプ</a>や<a href="#バースト">バースト</a>などスピードらしい配置がたくさん飛んでくる。 |
 | <span id='スピネーション（回外）'></span>**スピネーション（回外）**<br><small>*Supination*</small> | ① 前腕を「外側」にひねる動き（手のひらが上を向くような動き）のこと。またはその状態を指す。<br>② <a href="#ScoreSaber">ScoreSaber</a>ランク基準では、「手のひらを下にした位置から約180°～210°まで腕を外側に回転させること」と定義されている。<br>※「運動」を示す場合は一般的な1の意味で考えてよく、文脈次第では2の基準が用いられる場合もある<br>関連: <a href="#プロネーション（回内）">プロネーション（回内）</a> |
 | <span id='スペクトログラム'></span>**スペクトログラム**<br><small>*Spectrogram*</small> | 音声の周波数を可視化したグラフのこと。<a href="#ChroMapper">ChroMapper</a>ではレーンの横に表示されており、音が鳴っている箇所を視覚的に特定できる。立ち上がりの速い音ほど境目がクッキリ表示されるので、ドラムやピアノは細い線となって可視化され視認性が高いが、ボーカルは範囲がぼやけがちなので、音によって視認しやすさは異なる。また、音質の悪い音源ほどスペクトログラムの精度は落ちる。<br>※画像の曲ではドラムがわずかにスウィング（1/4等間隔ではないハネたリズム）しているのだが、スペクトログラムを見れば正確なタイミングを特定できる<br><img src="images/spectrogram.jpg" width="150"> |
@@ -285,7 +288,7 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 <a href="https://x.com/ge2toro" target="_blank">X (Twitter)</a>
 <br><a href="https://note.com/toro_desu" target="_blank">note</a>
 <br><a href="https://discord.gg/gfKQkgcpmE" target="_blank">Discordサーバー(mapping group)</a>
-<br><small>私が管理しているマッピング全般を扱うサーバーです。当用語集について話し合うチャンネルもあります。</small><br>
+<br><small>私が管理しているマッピング全般を扱うサーバーです。当用語集について何かあれば専用チャンネルからどうぞ。</small><br>
 
 * **参考サイト:**<br>
 この用語集の作成にあたり、以下のサイトも参考にしています。
@@ -293,4 +296,8 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 <br><a href="https://wiki.scoresaber.com/" target="_blank">ScoreSaber Wiki</a>
 <br><a href="https://beatleader.wiki/en/home" target="_blank">BeatLeader wiki</a>
 
-* **最終更新日:** 2026年04月21日
+* **Special Thanks:**<br>
+用語集についてフィードバックをくれた皆さんに感謝します！<br>
+<small>akawshi / Okyou / Gazer / じをん / stammib / たかはね / take_nyan / HicqLlie / ふやける / Marsh / mochichi / やおみん / リュナン / ルイ</small>
+
+* **最終更新日:** 2026年04月25日
