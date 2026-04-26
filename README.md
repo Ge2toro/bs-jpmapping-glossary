@@ -1,2 +1,1 @@
 # bs-jpmapping-glossary
-wip

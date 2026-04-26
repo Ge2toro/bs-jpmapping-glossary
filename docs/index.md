@@ -8,7 +8,7 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 日本人向けの、Beat Saberのマッピング（譜面制作）に特化した用語集です。<br>
 配置用語なども含みますので、マッピングをしていないプレイヤーも参考になると思います。<br>
 !!! info ""
-    これは、私toroが個人的に作成した用語集です。<br>「この用語がない」「説明がおかしい」等、内容について何かあればページ下部の連絡先からお気軽にご連絡ください。<br>
+    これは、私<a href="#_11">toro</a>が個人的に作成した用語集です。<br>「この用語がない」「説明がおかしい」等、内容について何かあればページ下部の連絡先からお気軽にご連絡ください。<br>
     プレイヤー目線での一般的なBeat Saber用語が知りたい方は、hibitさんが作成している「<a href="https://docs.google.com/document/d/1Zl8jh0djB80o3tbTmGR1MF9gV9pkYPfxqTC4IuRQmd0/edit?usp=sharing" target="_blank">ビーセイゆるふわ用語集</a>」もおすすめです。
 
 
