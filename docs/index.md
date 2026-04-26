@@ -243,7 +243,7 @@ description: Beat Saber（ビートセイバー）のマッピングに特化し
 | <span id='ミスマップ'></span>**ミスマップ**<br><small>*Mismap*</small> | 配置ミスを指す。コピペミス、誤クリック、誤削除などなど |
 | <span id='ミッドスピード'></span>**ミッドスピード**<br><small>*Mid Speed*</small> | BPMが遅すぎず速すぎず、ほどほどの密度を切らせる中速帯の譜面。<br><a href="#リニア">リニア</a>なものもあれば、テック寄りのものもある。 |
 | <span id='ミラー（配置）'></span>**ミラー（配置）**<br><small>*Mirror*</small> | 作成済みの配置をミラー反転すること。どのエディターでもデフォルトで利用可能な機能であり、<a href="#一貫性">一貫性</a>を保ったままお手軽に変化をつけてコピペすることができる為、同じパートの繰り返しなどでよく利用されるマッピング技法である。 |
-| <span id='Modder'></span>**Modder**<br><small>*モッダー*</small> | <a href="#ランク譜面">ランク譜面</a>において、ランク化の必須プロセスである<a href="#Modding">Modding</a>を行う役職の人のこと。各ランクチームには複数人のModderが在籍している。<br><a href="#JBSL">JBSL</a>においても、JBSL用の譜面を応募する際にはJBSLチームのModderがModdingを行ってくれる。 |
+| <span id='Modder'></span>**Modder**<br><small>*モッダー*</small> | ① ゲーム用のModを作成する人のこと。<br>② <a href="#ランク譜面">ランク譜面</a>において、ランク化の必須プロセスである<a href="#Modding">Modding</a>を行う役職の人のこと。各ランクチームには複数人のModderが在籍している。<br><a href="#JBSL">JBSL</a>においても、JBSL用の譜面を応募する際にはJBSLチームのModderがModdingを行ってくれる。 |
 | <span id='Modding'></span>**Modding**<br><small>*モッディング、モディング*</small> | ① ゲームにModを導入すること。<br>② ランク譜面化の為の<a href="#Mod">Mod</a>作業を行うこと。モディング、モッディング。<br>ランク化の為の必須プロセスである。 |
 | <span id='Mod'></span>**Mod**<br><small>*モッド*</small> | ① 有志によって開発された、ゲームに新機能を追加したりシステムを変更したりする非公式の拡張プログラム。<br>② ランク譜面化を目指す際、<a href="#Modder">Modder</a>（添削する専門の人）が譜面を詳細にチェックし、ランク基準に基づき配置や音取りなどの修正要求を行う作業のこと。語源はリズムゲーム「osu!」の同様の文化から。 |
 | <span id='ModAssistant'></span>**ModAssistant**<br><small>*モッドアシスタント*</small> | 過去に主流だったMod導入ツール。現在も利用可能であるものの、<a href="#BSManager">BSManager</a>の利用が推奨されている。 |
