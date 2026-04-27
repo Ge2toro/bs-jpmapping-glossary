@@ -24,13 +24,9 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        # Pythonを動かすためのPandasや、MkDocs本体をインストール
+        # MkDocs本体とプラグインをインストール
         run: |
-          pip install mkdocs-material pandas openpyxl mkdocs-glightbox
-
-      - name: Run dictionary script
-        # スクリプトを自動実行
-        run: python make_dictionary.py
+          pip install mkdocs-material mkdocs-glightbox
 
       - name: Deploy to GitHub Pages
         # 出来上がったサイトを公開用ブランチ（gh-pages）に自動アップロード
