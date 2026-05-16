@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/400.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/700.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gen-interface-jp@latest/display-800.css">
+{% endblock %}
