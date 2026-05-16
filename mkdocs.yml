@@ -5,16 +5,16 @@ theme:
   name: material
   language: ja
   custom_dir: overrides
-  font:
-    text: 
+  font: false
   palette:
     - scheme: default
       toggle:
         icon: material/brightness-7
         name: ダークモードに切り替える
     - scheme: slate
-      primary: deep purple
-      accent: cyan
+      #primary: deep purple
+      primary: custom
+      #accent: cyan
       toggle:
         icon: material/brightness-3
         name: ライトモードに切り替える
