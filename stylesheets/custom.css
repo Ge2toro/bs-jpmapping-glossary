@@ -1,0 +1,79 @@
+/* DarkMode */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color:        #1b1b1f; /* #1e1e1e; 背景 */
+  --md-primary-fg-color:        #363E7A; /* #363E7A; ヘッダ */
+  --md-typeset-a-color:         #a8b1ff; /* #92abff; リンク */
+  --md-accent-fg-color:         #6076e8; /* #778cd1; リンクオーバー */
+
+  /* info文字色 c1c1c1 */
+  --md-default-fg-color:        #cdcdcb; 
+  
+  /* 本文の文字色 #d0d0d0 */
+  --md-typeset-color:           #dfdfd6; 
+  
+  /* 表題 #d3d3d3 */
+  --md-default-fg-color--light: #dfdfd6; 
+
+}
+
+
+
+/* webFont */
+/*
+:root {
+  --md-text-font: 
+    "Gen Interface JP",
+    "Noto Sans JP",
+    sans-serif;
+  --md-code-font: "JetBrains Mono", monospace;
+}
+
+:root {
+  --body-font-size: 0.85rem;
+}
+
+.md-typeset {
+  font-size: var(--body-font-size);
+}
+
+.md-typeset .admonition,
+.md-typeset details,
+.md-typeset table:not([class]) {
+  font-size: calc(var(--body-font-size) * 0.8);
+}
+*/
+
+/* --- 外部リンクを区別するデザイン --- */
+
+/* httpから始まるリンクの末尾に「↗」を付ける（★ .md-content を追加して本文内に限定） */
+.md-content .md-typeset a[href^="http"]::after {
+    content: " ↗";
+    font-size: 0.6em;
+    opacity: 1.0;
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+/* ただし、自分のサイト（ge2toro.github.io）への絶対パスリンクには付けない（除外ルール） */
+.md-content .md-typeset a[href^="http"][href*="ge2toro.github.io"]::after {
+    content: none;
+}
+
+/* --- 左ナビゲーションのリンク色を統一 --- */
+
+/* すべてのナビゲーションリンクを「サイトの標準リンク色」にする */
+.md-nav__link {
+    color: var(--md-typeset-a-color) !important;
+    transition: opacity 0.2s; /* ホバー時のアニメーションを滑らかに */
+}
+
+/* マウスを乗せた時（ホバー）は少し薄くして「押せる感」を出す */
+.md-nav__link:hover {
+    opacity: 0.7;
+}
+
+/* 現在開いているページは太字にして目立たせる */
+.md-nav__link--active {
+    font-weight: bold;
+}
