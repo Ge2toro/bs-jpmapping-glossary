@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用語集の編集室 — 表形式</title>
+  <link rel="stylesheet" href="/web/site.css">
+  <link rel="stylesheet" href="/web/table.css"><link rel="stylesheet" href="/web/shared.css">
+</head>
+<body class="table-app">
+  <header class="app-header">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">▦</span><div><strong>用語集の編集室</strong><span class="variant">表形式</span></div></div>
+    <label class="view-control">編集画面<select id="view-mode" aria-label="編集画面"><option value="write">原案・個別編集</option><option value="table">表形式</option></select></label><label class="font-size-control">文字サイズ<select id="font-size" aria-label="エディターの文字サイズ"><option value="12">12px</option><option value="14">14px</option><option value="16" selected>16px</option><option value="18">18px</option><option value="20">20px</option><option value="22">22px</option><option value="24">24px</option></select></label>
+    <div class="header-actions"><button type="button" id="publish" class="button dark">サイト用に出力</button><span class="local-label">共通原稿</span><button id="backup" class="button plain">バックアップ</button><a class="button plain" href="/mkdocs-preview" target="_blank" rel="noopener">MkDocsプレビュー ↗</a></div>
+  </header>
+  <div class="sheet-toolbar">
+    <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="用語を検索" placeholder="用語・読み・説明を検索"></label>
+    <select id="filter" aria-label="絞り込み"><option value="all">すべての用語</option><option value="changed">前回出力から変更あり</option><option value="new">未出力</option></select>
+    <select id="sort" aria-label="並び順"><option value="input">入力順</option><option value="reading">五十音順</option></select>
+    <span class="toolbar-divider"></span><label class="density-label">行の高さ<select id="density"><option value="compact">コンパクト</option><option value="normal">標準</option><option value="full">全文</option></select></label>
+    <label class="check-inline"><input id="show-columns" type="checkbox" checked>補助列</label>
+    <div class="toolbar-end"><button id="toggle-detail" class="button plain" aria-expanded="true">編集欄を閉じる</button><button id="new" class="button accent">＋ 用語を追加</button></div>
+  </div>
+  <div id="error" class="error-banner" role="alert" hidden></div>
+  <main class="workspace" id="workspace">
+    <section class="sheet-section" aria-label="用語一覧とセルの編集">
+      <div class="sheet-caption"><div><strong id="count">読み込み中…</strong><span id="change-count"></span></div><span>セルをクリックして編集 · Tabで隣のセルへ · Enterで次の行</span></div>
+      <div id="sheet-scroll" class="sheet-scroll" tabindex="-1">
+        <table id="sheet" class="density-compact" aria-label="用語の編集表">
+          <colgroup><col class="col-number"><col class="col-status"><col class="col-name"><col class="col-body"><col class="col-display auxiliary"><col class="col-reading auxiliary"><col class="col-image auxiliary"><col class="col-auto auxiliary"></colgroup>
+          <thead><tr><th class="sticky-number" scope="col">No.</th><th class="sticky-status" scope="col"><span class="sr-only">下書きの状態</span>●</th><th class="sticky-name" scope="col"><small>A</small> 用語</th><th scope="col"><small>B</small> 意味・説明</th><th class="auxiliary" scope="col"><small>C</small> 英語・表示用の読み</th><th class="auxiliary" scope="col"><small>D</small> 並べ替え用の読み</th><th class="auxiliary" scope="col"><small>E</small> 画像</th><th class="auxiliary" scope="col"><small>F</small> 自動リンク</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div id="empty" class="empty" hidden><strong>一致する用語がありません</strong><p>検索語や絞り込みを変更してください。</p></div>
+      </div>
+    </section>
+    <div id="splitter" class="splitter" role="separator" tabindex="0" aria-label="一覧と編集欄の高さを調整" aria-orientation="horizontal" aria-valuemin="200" aria-valuemax="650" aria-valuenow="330"><span></span></div>
+    <section id="detail" class="detail" aria-label="選択した用語の詳細編集">
+      <header class="detail-header"><div><span id="selected-row" class="row-label"></span><h1 id="selected-name">用語を選択</h1><span id="draft-badge" class="badge"></span></div></header>
+      <div class="detail-columns">
+        <div class="body-pane">
+          <div class="rich-toolbar" role="toolbar" aria-label="説明の書式とリンク">
+            <button type="button" data-format="bold" aria-label="太字"><b>B</b></button><button type="button" data-format="italic" aria-label="斜体"><i>I</i></button><span class="toolbar-divider"></span><button id="term-link">用語リンク</button><button id="url-link">外部リンク</button><button id="unlink">リンク解除</button><button id="noauto">自動リンクを除外</button><span id="characters" class="characters"></span>
+          </div>
+          <div id="detail-body" class="detail-body" contenteditable="true" role="textbox" aria-label="選択行の説明" aria-multiline="true" spellcheck="false" data-placeholder="説明を書いてください。上の表と同じ内容を編集できます。"></div>
+          <div class="detail-options"><button type="button" id="manage-images" class="button plain">画像を編集</button><label class="check-inline"><input id="detail-auto" type="checkbox">自動リンクの対象</label></div>
+        </div>
+        
+        <aside class="preview-pane" aria-label="編集中の用語のプレビュー"><div class="preview-header"><strong>編集中の内容</strong></div><div id="preview" class="entry-preview" aria-live="polite"></div><p id="preview-warning" hidden></p></aside>
+      </div>
+    </section>
+  </main>
+  <footer class="statusbar"><span id="selection-label">用語を選択してください</span><div><span id="save-status" role="status" aria-live="polite">読み込み中…</span><button id="save">すべての下書きを保存 <kbd>Ctrl S</kbd></button></div></footer>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="link-dialog"><form id="link-form"><p class="eyebrow">INSERT LINK</p><h2 id="link-title">用語へのリンク</h2><div id="term-target-fields"><label>用語を検索<input id="link-search" type="search" placeholder="名前・読みで絞り込む"></label><label>リンク先の用語<select id="link-target" size="6"></select></label></div><label id="url-target-field" hidden>リンク先URL<input id="link-url" type="url" placeholder="https://"></label><label>表示する文字<input id="link-label" required></label><p id="link-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" id="link-cancel" class="button plain">キャンセル</button><button type="submit" class="button accent">リンクを挿入</button></div></form></dialog>
+<dialog id="image-dialog" class="image-dialog"><h2>説明画像</h2><div class="section-label"><label class="button upload-label">PCから画像を取り込む<input id="image-upload" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><button type="button" id="close-images" class="button">閉じる</button></div><div id="images-picker"></div></dialog>
+  <script>
+    // Report module-load failures too; the editor's own catch cannot run if its
+    // script or an imported dependency never loads.
+    (function () {
+      function failed(message) {
+        document.getElementById('count').textContent = '読み込めませんでした';
+        document.getElementById('save-status').textContent = '読み込み失敗';
+        var banner = document.getElementById('error');
+        banner.textContent = message;
+        banner.hidden = false;
+      }
+      if (location.protocol === 'file:') {
+        failed('start_editor.bat をダブルクリックし、開いた http://127.0.0.1:8780/ の画面を使用してください。');
+        return;
+      }
+      var timeout = setTimeout(function () {
+        if (document.documentElement.dataset.editorState !== 'ready') {
+          failed('読み込みが完了しませんでした。起動用ウィンドウを確認し、start_editor.bat で起動し直してからページを再読み込みしてください。');
+        }
+      }, 12000);
+      import('/web/table.mjs').then(function () {
+        clearTimeout(timeout);
+      }).catch(function (error) {
+        clearTimeout(timeout);
+        console.error('Editor startup failed:', error);
+        failed('編集画面のプログラムを読み込めませんでした。start_editor.bat で起動し直し、Ctrl+F5で再読み込みしてください。詳細: ' + error.message);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,8 +1,10 @@
 @echo off
+setlocal
 cd /d "%~dp0"
-python make_dictionary.py
-if %errorlevel% neq 0 (
-    echo ！？
-    pause
+if /I "%~1"=="--excel" (
+    python -B make_dictionary.py
+) else (
+    python -B editor\publish.py
 )
-exit
+if errorlevel 1 pause
+endlocal

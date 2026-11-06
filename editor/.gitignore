@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+data/history/
+data/site-backups/
+data/*.tmp
+
+data/preview-site/
+data/mkdocs-preview.log

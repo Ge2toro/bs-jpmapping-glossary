@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>用語集の編集室 — Beat Saber</title>
+  <link rel="stylesheet" href="/web/style.css">
+  <link rel="stylesheet" href="/web/site.css">
+  <link rel="stylesheet" href="/web/shared.css"><script type="module">
+import('/web/app.js').catch(error => {
+  const banner=document.querySelector('#error-banner'); banner.hidden=false;
+  banner.textContent='編集画面を読み込めませんでした。batで起動し、Ctrl+F5で再読み込みしてください。'+error.message;
+  document.querySelector('#save-status').textContent='読み込みに失敗しました';
+});
+</script>
+</head>
+<body class="editor-app">
+  <header class="app-header">
+    <a class="brand" href="/write" aria-label="用語集の編集室 ホーム"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>用語集の編集室<small>BEAT SABER / MAPPING</small></span></a>
+    <label class="view-control">編集画面<select id="view-mode" aria-label="編集画面"><option value="write">原案・個別編集</option><option value="table">表形式</option></select></label><label class="font-size-control">文字サイズ<select id="font-size" aria-label="エディターの文字サイズ"><option value="12">12px</option><option value="14">14px</option><option value="16">16px</option><option value="18">18px</option><option value="20">20px</option><option value="22">22px</option><option value="24">24px</option></select></label><div class="header-actions"><button type="button" id="publish" class="button dark">サイト用に出力</button><span class="local-tag"><i></i> 共通原稿</span><a class="button subtle" href="/api/backup" download>バックアップ</a><a class="button plain" href="/mkdocs-preview" target="_blank" rel="noopener">MkDocsプレビュー ↗</a></div>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar" aria-label="用語一覧">
+      <div class="sidebar-head"><div><span class="eyebrow">LIBRARY</span><h1>用語一覧 <span id="total-count">—</span></h1></div><button id="new-button" class="square-button" title="用語を追加" aria-label="用語を追加">＋</button></div>
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="用語・読み・説明で検索" aria-label="用語を検索"></label>
+      <div class="list-options"><select id="filter" aria-label="用語の絞り込み"><option value="all">すべての用語</option><option value="changed">前回出力から変更あり</option><option value="new">未出力</option></select><select id="sort" aria-label="一覧の並び順"><option value="input">入力順</option><option value="reading">五十音順</option></select></div>
+      <div class="list-caption"><span id="shown-count">読み込み中</span><span>● 出力待ち</span></div>
+      <div id="term-list" class="term-list" role="list" aria-label="用語"></div>
+      <p id="empty-list" class="empty-list" hidden>一致する用語がありません。</p>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>原稿はこのPCに保存<br><small>両方の編集画面で同じ原稿を使用</small></span></div>
+    </aside>
+
+    <main class="writing-area">
+      <div class="editor-heading"><div><p class="eyebrow">WRITE & REFINE</p><h2>用語を編集</h2></div><span id="draft-badge" class="badge">下書き</span></div>
+      <div id="error-banner" class="error-banner" role="alert" hidden></div>
+      <form id="term-form" autocomplete="off">
+        <label class="field name-field">用語名<input id="term-name" name="name" placeholder="新しい用語の名前" maxlength="2000"></label>
+        <div class="metadata-grid"><label class="field">並べ替え用の読み<input id="term-reading" name="reading" placeholder="例：アーク" maxlength="2000"><small>書く順番は自由。ページではこの読みで並びます。</small></label><label class="field">英語表記・表示用の読み<input id="term-display" name="displayReading" placeholder="例：Arc" maxlength="2000"></label></div>
+        <div class="body-label"><label id="body-label" for="meaning">説明</label><span>いつもの文章で。リンクはボタンから。</span></div>
+        <div class="rich-editor">
+          <div class="toolbar" role="toolbar" aria-label="文章の編集">
+            <button type="button" data-format="bold" title="選択した文字を太字に" aria-label="太字"><strong>B</strong></button><button type="button" data-format="italic" title="選択した文字を斜体に" aria-label="斜体"><em>I</em></button><span class="toolbar-divider"></span>
+            <button type="button" id="term-link-button">↗ 用語リンク</button><button type="button" id="url-link-button">外部リンク</button><button type="button" id="unlink-button" title="選択箇所の手動リンクを解除">リンク解除</button><span class="toolbar-divider"></span><button type="button" id="noauto-button" title="選択した文字の自動リンクを抑止・解除">自動リンクを除外</button>
+          </div>
+          <div id="meaning" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="body-label" data-placeholder="この用語の意味や、使われる場面を書いてみましょう。" spellcheck="false"></div>
+          <div class="editor-foot"><span>選択した文字にリンク・書式を設定</span><span id="character-count">0文字</span></div>
+        </div>
+        <div class="entry-options"><label class="check-label"><input id="term-autolink" type="checkbox"><span>この用語を自動リンクの対象にする<small>他の用語の説明にこの名前が出たとき、リンクを付けます。</small></span></label></div>
+        <section class="image-section"><div class="section-label"><h3>説明画像</h3><label class="button upload-label">PCから画像を取り込む<input id="image-upload" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label></div><div id="images-picker"></div></section>
+        <div class="save-bar"><span id="save-status" role="status" aria-live="polite">読み込み中…</span><button type="button" id="save-button" class="button outline">下書きを保存 <kbd>Ctrl S</kbd></button></div>
+      </form>
+    </main>
+
+    <aside class="preview-panel" aria-label="編集中の用語のプレビュー">
+      <div class="preview-heading"><p class="eyebrow">PREVIEW</p><h2>編集中の内容</h2></div>
+      <div class="preview-paper"><div class="preview-paper-label">用語の表示イメージ</div><div id="entry-preview" aria-live="polite"></div></div>
+      <div id="preview-warnings" class="preview-warnings" hidden></div>
+    </aside>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="link-dialog"><form id="link-form"><p class="eyebrow">INSERT LINK</p><h2 id="link-dialog-title">用語へのリンク</h2><p id="link-dialog-help">リンク先の用語と、表示する文字を指定します。</p><div id="term-target-fields"><label class="field">用語を検索<input id="link-search" type="search" placeholder="用語名・読みで絞り込む"></label><label class="field">リンク先の用語<select id="link-target" size="6" required></select></label></div><label id="url-target-field" class="field" hidden>リンク先URL<input id="link-url" type="url" placeholder="https://"></label><label class="field">表示する文字<input id="link-label" required></label><p id="link-error" class="dialog-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" id="link-cancel" class="button outline">キャンセル</button><button type="submit" class="button primary">リンクを挿入</button></div></form></dialog>
+</body>
+</html>

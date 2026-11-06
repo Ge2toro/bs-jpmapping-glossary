@@ -150,7 +150,8 @@ def generate_markdown():
         meaning = str(row.get('意味', '')).strip()
         reading_display = str(row.get('読み方（または英語）', '')).strip()
         yomi_sort = str(row.get('読み', '')).strip()
-        image_name = str(row.get('画像', '')).strip()
+        # 画像名はセル内改行で複数指定できる。空行と各行の前後空白は無視する。
+        image_names = [name.strip() for name in str(row.get('画像', '')).splitlines() if name.strip()]
         
         add_url = str(row.get('URL追加', '')).strip()
 
@@ -276,8 +277,8 @@ def generate_markdown():
             markdown_lines.append("| --- | --- |")
             current_group = group
 
-        if image_name:
-            meaning += f'<br><img src="images/{image_name}.jpg" width="150">'
+        if image_names:
+            meaning += '<br>' + ' '.join(f'<img src="images/{name}.jpg" width="150">' for name in image_names)
 
         line = f"| <span id='{term}'></span>**{term}**<br><small>*{reading_display}*</small> | {meaning} |"
         markdown_lines.append(line)
